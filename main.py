@@ -10,7 +10,7 @@ def get_message(line):  # removes timestamps and stuff from the csv entries
 
 
 def count_words(line, query):
-    return len(re.findall(fr"^{query}|{query}$| {query}[ |\!|\?|\.|\,]", line))
+    return len(re.findall(fr"^{query}|{query}$|{query}[^a-zA-Z]", line))
 
 
 messages_path = input("Messages path (messages/): ") or "messages"
