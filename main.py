@@ -15,7 +15,7 @@ def count_words(line, query):
 
 messages_path = input("Messages path (messages/): ") or "messages"
 while(True):
-    query = input("\nWord to count (leave blank for all messages): ").lower()
+    query = input("\nWord to count: ").lower()
     all_messages = []
 
     # parse the index file
