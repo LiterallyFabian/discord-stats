@@ -9,7 +9,7 @@ Quick Python script to count word occurrences in Discord chats.
 #### Prerequisites
 
 - A Python 3 environment
-- Your [Discord data package]([https://support.discord.com/hc/en-us/articles/360004027692-Requesting-a-Copy-of-your-Data)
+- Your [Discord data package](https://support.discord.com/hc/en-us/articles/360004027692-Requesting-a-Copy-of-your-Data)
 
 #### Running
 
