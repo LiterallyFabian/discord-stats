@@ -24,7 +24,7 @@ while(True):
 
     for message_dir in os.listdir(messages_path):
         # open message file
-        if(message_dir != "index.json"):
+        if(message_dir != "index.json" and message_dir[1:] in user_data):
             user = User(message_dir, user_data[message_dir[1:]])
             message = Message(user, query)
             with open(os.path.join(messages_path, message_dir, "messages.csv"), encoding="utf8") as file:
