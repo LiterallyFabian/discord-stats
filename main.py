@@ -43,4 +43,4 @@ while(True):
 
     for msg in all_messages:
         if(msg.count > 0):
-            print(msg.count, "  ", msg.user.name)
+            print('{:10}   {:4}'.format(msg.count, msg.user.name))
