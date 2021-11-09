@@ -1,6 +1,8 @@
 import os
 import re
 import json
+import pandas as pd
+import matplotlib.pyplot as plt
 from User import User
 from Message import Message
 
@@ -11,10 +13,6 @@ def get_message(line):  # removes timestamps and stuff from the csv entries
 
 def get_words(line, query):
     return len(re.findall(fr"^{query}|{query}$|{query}[^a-zA-Z]", line))
-
-def get_timestamp(line):
-    return re.sub("\d{18},(\d{4}-\d{2}-\d{2}) .+\+00:00,", "", line)
-
 
 messages_path = input("Messages path (messages/): ") or "messages"
 
@@ -42,18 +40,11 @@ def plot_user():
 
         print(f"{user.name} (ID {user.id}) found.")
 
-
-        # open message file
-        with open(os.path.join(messages_path, f"c{user.id}", "messages.csv"), encoding="utf8") as file:
-            # Ignore first line, could be replaced with .pop or something but whatever
-            first_line = True
-            for unparsed_line in file:
-                if not first_line:
-                    line = get_message(unparsed_line.rstrip())
-                    
-                else:
-                    first_line = False
-
+        df = pd.read_csv(os.path.join(messages_path, f"c{user.id}", "messages.csv"), sep=",", encoding="utf8", usecols=["Timestamp"])
+        df["Timestamp"] = df["Timestamp"].astype("datetime64")
+        df.groupby([df["Timestamp"].dt.year, df["Timestamp"].dt.month]).count().plot(kind="bar")
+        
+        plt.show()
 
 
 def count_word():
