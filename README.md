@@ -1,8 +1,10 @@
 # discord-stats
 
-Quick Python script to count word occurrences in Discord chats. 
+Quick Python script to plot word occurrences & total messages in Discord chats. 
 
 ![image](https://user-images.githubusercontent.com/47401343/139577562-8ede7afb-4632-4528-94ce-8263ed4c216a.png)
+![image](https://user-images.githubusercontent.com/47401343/141184016-df02c6be-2c63-446b-ada3-32a97a0ef2cd.png)
+
 
 
 ## Usage
