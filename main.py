@@ -14,6 +14,7 @@ def get_message(line):  # removes timestamps and stuff from the csv entries
 def get_words(line, query):
     return len(re.findall(fr"^{query}|{query}$|{query}[^a-zA-Z]", line))
 
+
 messages_path = input("Messages path (messages/): ") or "messages"
 
 # parse the index file
@@ -27,7 +28,7 @@ def plot_user():
 
         # find an user in the user list
         while(name_found == False):
-            query = input("\nUser to plot (ID): ").lower()
+            query = input("\nUser to plot (username): ").lower()
             for id in user_data:
                 if(user_data[id] is not None):
                     name = user_data[id].replace("Direct Message with ", "")
@@ -40,10 +41,14 @@ def plot_user():
 
         print(f"{user.name} (ID {user.id}) found.")
 
-        df = pd.read_csv(os.path.join(messages_path, f"c{user.id}", "messages.csv"), sep=",", encoding="utf8", usecols=["Timestamp"])
+        df = pd.read_csv(os.path.join(
+            messages_path, f"c{user.id}", "messages.csv"), sep=",", encoding="utf8", usecols=["Timestamp"])
         df["Timestamp"] = df["Timestamp"].astype("datetime64")
-        df.groupby([df["Timestamp"].dt.year, df["Timestamp"].dt.month]).count().plot(kind="bar")
-        
+        df.groupby([df["Timestamp"].dt.year, df["Timestamp"].dt.month]
+                   ).count().plot(kind="bar")
+
+        plt.xticks(rotation=45)
+        plt.title(f"Messages sent to {user.name} every month")
         plt.show()
 
 
